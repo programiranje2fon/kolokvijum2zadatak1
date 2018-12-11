@@ -89,7 +89,8 @@ public class ArhivaFestivalaTest {
 				"Arsenal Fest#Kragujevac#Van Gogh\n" + 
 				"Exit#Novi Sad#Goblini";
 	
-		try (PrintWriter out = new PrintWriter("fajl1.txt")) {
+		String nazivFajla = "fajl1.txt";
+		try (PrintWriter out = new PrintWriter(nazivFajla)) {
 			out.print(sadrzajFajla);
 		} catch (Exception e) {
 			throw e;
@@ -105,7 +106,7 @@ public class ArhivaFestivalaTest {
 		mf2.setMesto("Novi Sad");
 		mf2.setPobednik("Goblini");
 		
-		instance.ucitajFestivaleIzFajla("fajl1.txt");
+		instance.ucitajFestivaleIzFajla(nazivFajla);
 		
 		@SuppressWarnings("unchecked")
 		List<MuzickiFestival> festivali = (List<MuzickiFestival>) TestUtil.getFieldValue(instance, "festivali");
@@ -119,6 +120,9 @@ public class ArhivaFestivalaTest {
 		assertTrue("Kada se metodi prosledi naziv fajla sa sadrzajem: \"Arsenal Fest#Kragujevac#Van Gogh\nExit#Novi Sad#Goblini\", naziv drugog festivala se ne ucita ispravno.", mf2.getNaziv().equals(drugi.getNaziv()));
 		assertTrue("Kada se metodi prosledi naziv fajla sa sadrzajem: \"Arsenal Fest#Kragujevac#Van Gogh\nExit#Novi Sad#Goblini\", mesto drugog festivala se ne ucita ispravno.", mf2.getMesto().equals(drugi.getMesto()));
 		assertTrue("Kada se metodi prosledi naziv fajla sa sadrzajem: \"Arsenal Fest#Kragujevac#Van Gogh\nExit#Novi Sad#Goblini\", pobednik drugog festivala se ne ucita ispravno.", mf2.getPobednik().equals(drugi.getPobednik()));
+	
+		// brisemo kreirani fajl
+		new File(nazivFajla).delete();
 	}
 	
 	@Test
