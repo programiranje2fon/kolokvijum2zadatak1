@@ -15,20 +15,19 @@ public class ArhivaFestivala implements Arhiviranje {
 
 	private List<MuzickiFestival> festivali = new LinkedList<>();
 
-	public void upisiFestivaleUcesnika(String izvodjac) throws Exception {
+	public void upisiFestivaleUcesnika(String izvodjac, String nazivFajla) throws Exception {
 		if (festivali.isEmpty()) {
 			throw new Exception("Ne postoje uneti festivali.");
 		}
 
 		try (ObjectOutputStream out = new ObjectOutputStream(
-				new BufferedOutputStream(new FileOutputStream("osvojeni_festivali.out")))) {
+				new BufferedOutputStream(new FileOutputStream(nazivFajla)))) {
 
 			for (MuzickiFestival muzickiFestival : festivali) {
 				if (muzickiFestival.getPobednik().equals(izvodjac)) {
 					out.writeObject(muzickiFestival);
 				}
 			}
-			out.close();
 		} catch (Exception e) {
 			System.out.println("Greska: " + e.getMessage());
 		}
@@ -38,16 +37,16 @@ public class ArhivaFestivala implements Arhiviranje {
 	public void ucitajFestivaleIzFajla(String nazivFajla) {
 		try (BufferedReader br = new BufferedReader(new FileReader(nazivFajla))) {
 			String s;
-			
+
 			while ((s = br.readLine()) != null) {
-				String[] delovi = s.split("|");
-				
+				String[] delovi = s.split("#");
+
 				String naziv = delovi[0];
 				String mesto = delovi[1];
 				String pobednik = delovi[2];
 
 				MuzickiFestival f = new MuzickiFestival();
-				f.setNazivF(naziv);
+				f.setNaziv(naziv);
 				f.setMesto(mesto);
 				f.setPobednik(pobednik);
 
@@ -58,12 +57,12 @@ public class ArhivaFestivala implements Arhiviranje {
 	}
 
 	@Override
-	public void objediniArhive(List<String> spisakFajlova) {
+	public void objediniArhive(List<String> spisakFajlova, String fajlZaUpis) {
 		List<MuzickiFestival> objedinjeniFestivali = new LinkedList<>();
 
 		// posto se u listi 'spisakFajlova' nalaze nazivi fajlova u kojima se
-		// nalaze podaci o festivalima, prolazimo kroz sve nazive fajlova, 
-		// pristupamo svakom fajlu, iscitavamo podatke o festivalima iz njega 
+		// nalaze podaci o festivalima, prolazimo kroz sve nazive fajlova,
+		// pristupamo svakom fajlu, iscitavamo podatke o festivalima iz njega
 		// i smestamo u listu 'objedinjeniFestivali'
 		for (String nazivFajla : spisakFajlova) {
 			try (ObjectInputStream in = new ObjectInputStream(
@@ -84,9 +83,9 @@ public class ArhivaFestivala implements Arhiviranje {
 			}
 		}
 
-		// upisivanje objedinjene liste festivala u fajl cela_arhiva.out
+		// upisujemo elemente objedinjene liste festivala u fajl cela_arhiva.out
 		try (ObjectOutputStream out = new ObjectOutputStream(
-				new BufferedOutputStream(new FileOutputStream("cela_arhiva.out")))) {
+				new BufferedOutputStream(new FileOutputStream(fajlZaUpis)))) {
 
 			for (MuzickiFestival muzickiFestival : objedinjeniFestivali) {
 				out.writeObject(muzickiFestival);

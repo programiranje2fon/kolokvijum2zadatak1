@@ -6,5 +6,5 @@ public interface Arhiviranje {
 
 	void ucitajFestivaleIzFajla(String nazivFajla);
 	
-	void objediniArhive(List<String> spisakFajlova);
+	void objediniArhive(List<String> spisakFajlova, String fajlZaUpis);
 }

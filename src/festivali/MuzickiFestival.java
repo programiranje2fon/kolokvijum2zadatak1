@@ -14,7 +14,7 @@ public class MuzickiFestival implements Serializable {
 		return naziv;
 	}
 
-	public void setNazivF(String naziv) {
+	public void setNaziv(String naziv) {
 		if (naziv == null || naziv.isEmpty()) {
 			throw new MuzickiFestivalException("Naziv festivala ne moze biti null ili prazan string.");
 		}

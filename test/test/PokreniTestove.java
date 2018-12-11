@@ -10,6 +10,10 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
+import festivali.ArhivaFestivalaTest;
+import festivali.ArhiviranjeTest;
+import festivali.MuzickiFestivalTest;
+
 /**
  * This class executes all tests and prints out the report.
  * 
@@ -17,10 +21,9 @@ import org.junit.runner.notification.Failure;
 public class PokreniTestove {
 
 	public static void main(String[] args) {
-//		runTestsForClass(ZaposleniTest.class);
-//		runTestsForClass(PogonskiRadnikTest.class);
-//		runTestsForClass(KomercijalistaTest.class);
-//		runTestsForClass(ObracunPlataInterfejsTest.class);
+		runTestsForClass(MuzickiFestivalTest.class);
+		runTestsForClass(ArhiviranjeTest.class);
+		runTestsForClass(ArhivaFestivalaTest.class);
 	}
 
 	/**
