@@ -6,6 +6,8 @@ import festivali.izuzeci.MuzickiFestivalException;
 
 public class MuzickiFestival implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String naziv;
 	private String mesto;
 	private String pobednik;

@@ -85,7 +85,8 @@ public class ArhivaFestivala implements Arhiviranje {
 
 		// upisujemo elemente objedinjene liste festivala u fajl cela_arhiva.out
 		try (ObjectOutputStream out = new ObjectOutputStream(
-				new BufferedOutputStream(new FileOutputStream(fajlZaUpis)))) {
+											new BufferedOutputStream(
+													new FileOutputStream(fajlZaUpis)))) {
 
 			for (MuzickiFestival muzickiFestival : objedinjeniFestivali) {
 				out.writeObject(muzickiFestival);
