@@ -1,7 +1,9 @@
 package festivali;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 
 import java.lang.reflect.Modifier;
 
@@ -129,7 +131,12 @@ public class MuzickiFestivalTest {
 	}
 	
 	@Test
-	public void metoda_equals() {
+	public void metoda_equals_nijeDobraKlasa() {
+		assertFalse("Metoda equals() ne vraca false ako se prosledi objekat druge klase.", instance.equals(new Object()));
+	}
+	
+	@Test
+	public void metoda_equals_isti() {
 		instance.setNaziv("Aresenal Fest");
 		instance.setMesto("Kragujevac");
 		
@@ -137,7 +144,31 @@ public class MuzickiFestivalTest {
 		mf1.setNaziv("Aresenal Fest");
 		mf1.setMesto("Kragujevac");
 		
-		assertEquals("Metoda equals() ne vraca vrednost true za prosledjen festival sa istim nazivom i mestom", mf1, instance);
+		assertEquals("Metoda equals() ne vraca vrednost true za prosledjen festival sa istim nazivom i mestom.", mf1, instance);
+	}
+	
+	@Test
+	public void metoda_equals_razlicitNaziv() {
+		instance.setNaziv("Aresenal Fest");
+		instance.setMesto("Kragujevac");
+		
+		MuzickiFestival mf1 = new MuzickiFestival();
+		mf1.setNaziv("Exit");
+		mf1.setMesto("Kragujevac");
+		
+		assertNotEquals("Metoda equals() ne vraca vrednost false za prosledjen festival sa razlicitim nazivom.", mf1, instance);
+	}
+	
+	@Test
+	public void metoda_equals_razlicitoMesto() {
+		instance.setNaziv("Aresenal Fest");
+		instance.setMesto("Kragujevac");
+		
+		MuzickiFestival mf1 = new MuzickiFestival();
+		mf1.setNaziv("Aresenal Fest");
+		mf1.setMesto("Bor");
+		
+		assertNotEquals("Metoda equals() ne vraca vrednost false za prosledjen festival sa razlicitim mestom.", mf1, instance);
 	}
 	
 }

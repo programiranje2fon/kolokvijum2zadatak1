@@ -13,6 +13,7 @@ import org.junit.runner.notification.Failure;
 import festivali.ArhivaFestivalaTest;
 import festivali.ArhiviranjeTest;
 import festivali.MuzickiFestivalTest;
+import festivali.izuzeci.MuzickiFestivalExceptionTest;
 
 /**
  * This class executes all tests and prints out the report.
@@ -21,6 +22,7 @@ import festivali.MuzickiFestivalTest;
 public class PokreniTestove {
 
 	public static void main(String[] args) {
+		runTestsForClass(MuzickiFestivalExceptionTest.class);
 		runTestsForClass(MuzickiFestivalTest.class);
 		runTestsForClass(ArhiviranjeTest.class);
 		runTestsForClass(ArhivaFestivalaTest.class);
