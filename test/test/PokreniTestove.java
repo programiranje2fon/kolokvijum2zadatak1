@@ -14,6 +14,7 @@ import festivali.ArhivaFestivalaTest;
 import festivali.ArhiviranjeTest;
 import festivali.MuzickiFestivalTest;
 import festivali.izuzeci.MuzickiFestivalExceptionTest;
+import ispravka_koda.StringOperacijeTest;
 
 /**
  * This class executes all tests and prints out the report.
@@ -26,6 +27,7 @@ public class PokreniTestove {
 		runTestsForClass(MuzickiFestivalTest.class);
 		runTestsForClass(ArhiviranjeTest.class);
 		runTestsForClass(ArhivaFestivalaTest.class);
+		runTestsForClass(StringOperacijeTest.class);
 	}
 
 	/**
